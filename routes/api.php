@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::post('/register', [\App\Http\Controllers\Api\AuthController::class, 'register']);
+Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
 
-Route::apiResource('book', \App\Http\Controllers\Api\BookController::class);
-Route::apiResource('bookshelf', \App\Http\Controllers\Api\BookshelfController::class);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('book', \App\Http\Controllers\Api\BookController::class);
+    Route::apiResource('bookshelf', \App\Http\Controllers\Api\BookshelfController::class);
+    Route::post('/logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
+});

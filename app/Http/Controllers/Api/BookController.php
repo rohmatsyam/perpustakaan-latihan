@@ -94,8 +94,8 @@ class BookController extends Controller
     public function update(Request $request, Book $book)
     {
         $book->update([
-            'author_id' => $request->author_id,
-            'title' => $request->title,
+            'bookshelf_id' => $request->bookshelf_id,
+            'name' => $request->name,
             'description' => $request->description
         ]);
 
